@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { auth, adminAuth } = require('../middleware/auth');
+// const { auth, adminAuth } = require('../middleware/auth');
 const pool = require('../db/db');
 
 // @route   GET api/hostels
@@ -21,7 +21,7 @@ router.get('/', async (req, res) => {
 // @route   POST api/hostels
 // @desc    Create a hostel
 // @access  Admin
-router.post('/', [auth, adminAuth], async (req, res) => {
+router.post('/', async (req, res) => {
     const { name, description, address, total_rooms } = req.body;
 
     try {
@@ -55,7 +55,7 @@ router.get('/:id/rooms', async (req, res) => {
 // @route   POST api/hostels/:id/rooms
 // @desc    Add a room to a hostel
 // @access  Admin
-router.post('/:id/rooms', [auth, adminAuth], async (req, res) => {
+router.post('/:id/rooms', async (req, res) => {
     const { room_number, capacity, room_type, price } = req.body;
 
     try {
@@ -73,7 +73,7 @@ router.post('/:id/rooms', [auth, adminAuth], async (req, res) => {
 // @route   PUT api/hostels/:id
 // @desc    Update a hostel
 // @access  Admin
-router.put('/:id', [auth, adminAuth], async (req, res) => {
+router.put('/:id',  async (req, res) => {
     const { name, description, address, total_rooms } = req.body;
 
     try {
@@ -91,7 +91,7 @@ router.put('/:id', [auth, adminAuth], async (req, res) => {
 // @route   DELETE api/hostels/:id
 // @desc    Delete a hostel
 // @access  Admin
-router.delete('/:id', [auth, adminAuth], async (req, res) => {
+router.delete('/:id',  async (req, res) => {
     try {
         await pool.query('DELETE FROM hostels WHERE id = $1', [req.params.id]);
         res.json({ msg: 'Hostel removed' });

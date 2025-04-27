@@ -34,7 +34,7 @@ pool.connect((err, client, done) => {
 // Define Routes
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/hostels', require('./routes/hostels'));
-app.use('/api/applications', require('./routes/applications'));
+// app.use('/api/applications', require('./routes/applications'));
 
 const PORT = process.env.PORT || 5000;
 
