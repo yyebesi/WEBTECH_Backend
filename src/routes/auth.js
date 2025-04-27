@@ -3,7 +3,7 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { check, validationResult } = require('express-validator');
-const { auth } = require('../middleware/auth');
+// const { auth } = require('../middleware/auth');
 const pool = require('../db/db');
 
 // @route   POST api/auth/register
@@ -122,7 +122,7 @@ router.post('/login', [
 // @route   GET api/auth/user
 // @desc    Get user data
 // @access  Private
-router.get('/user', auth, async (req, res) => {
+router.get('/user', async (req, res) => {
     try {
         const user = await pool.query(
             'SELECT id, email, full_name, role FROM users WHERE id = $1',
